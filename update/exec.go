@@ -21,17 +21,17 @@ func SelfUpdate(owner string, repo string, proxyURL string) (err error) {
 		return err
 	}
 	if !yes {
-		fmt.Printf("当前已是最新版本: %s\n", info.Version)
+		fmt.Printf("Current version is the latest: %s\n", info.Version)
 		return nil
 	}
 
-	fmt.Printf("发现新版本: %s，正在下载更新...\n", latest.TagName)
+	fmt.Printf("New version found: %s, downloading update...\n", latest.TagName)
 
 	// Apply update
 	if err = up.Apply(latest, findAsset, findChecksum); err != nil {
 		return err
 	}
-	fmt.Printf("版本升级成功，当前版本: %s\n", latest.TagName)
+	fmt.Printf("Update successful, current version: %s\n", latest.TagName)
 	return nil
 }
 
