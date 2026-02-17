@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"context"
+	"fkmcps/constants"
 	"fkmcps/update"
+	"os"
 
 	cli "github.com/urfave/cli/v3"
 )
@@ -19,6 +21,9 @@ func newUpdateCommand() *cli.Command {
 		},
 		Action: func(ctx context.Context, cmd *cli.Command) error {
 			proxyURL := cmd.String("proxy")
+			if proxyURL == "" {
+				proxyURL = os.Getenv(constants.MCP_PROXY_URL)
+			}
 			return update.SelfUpdate("wsshow", "fkmcps", proxyURL)
 		},
 	}
