@@ -1,0 +1,8 @@
+*.exe
+*.log
+*.tmp
+*.bak
+*.zip
+.DS_Store
+.env
+release/
